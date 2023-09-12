@@ -3,6 +3,8 @@
 - La clase hija herede los atributos y metodos de la clase padre
 - Si los atributos estan privados se accede mediante getter and setter, para acceder a ellos:
 - Para los metodos no es necesario ya que estan en publico normalmente en la clase Padre.
+- Si la clase Padre tienen un metodo en private, este no se hereda. Solo se podra acceder a ellos con sus getter and setter.
+
 
 Clase Hija:
 
@@ -54,7 +56,7 @@ Este se referirá a la clase que se encuentre en el Hijo(Monitor).
 Cuando se imprime un objeto, se imprime su posicion de memoria e implicitamente Java llamada a la función `toString`
 Pasos:
 - Clic derecho en un espacio en blanco.
-- Overwrite Methods
+- Overridee Methods
 - Elegimos toString, en este caso la clasePadre herede de Object
 
       public String toString(){
@@ -72,6 +74,138 @@ Si aun quiero imprimir la pos de memoria:
 # Clase Object:
 
 -Todas las clases heredan de Object
+
+------------------------
+# Clase abuelo:
+
+Dispositivo -> Computador -> Computador Cuántico
+Para modificar metodos con el mismo nombre en alguno de ellos(Padre o Hijo)se usa `@Override`:
+
+Dispo (abuelo):
+
+    public void metodoPrueba(){
+    sout"soy un dispo"
+Computador (Padre):
+
+    @Override
+    public void metodoPrueba(){
+    sout"soy un computador"
+Computador Cuántico (hijo):
+
+    @Override
+    public void metodoPrueba(){
+    sout"soy un cc"
+
+Y si quiero que el hijo (CC) acceda al metodo del abuelo(Dispositivo):
+Se debe crear un by-pass en el Padre:
+
+    public void intermedio(){
+            super.metodoPrueba();
+    }
+
+//Verificar esto, practicar.
+
+-----------------------
+# Si creo un metodo y no quiero que usen `@Override` los hijos o nietos:
+Debo usar final:
+
+        public final voy metodoNoModificable(){
+        }
+
+--------------------------------
+# Constructor en clase Padre:
+
+    public Dispositivo(){ //constructor sin parámetros
+
+    public Dispositivo(Srting fabricante){  //constructor con parámetros
+        this.fabricante = fabricante
+    }
+
+Lo llamo en la clase Hija(Computador):
+
+    public Computador(String fabricante){
+        super(); //llamo al constructro sin parámetros
+        super(fabricante); // llamo al const. con parámetros
+
+OJO: el constructor siempre debe estar antes de cualquier otra linea de codigo dentro del constructor de la clase Hija:
+
+    public Computador(String fabricante){
+            super(fabricante);
+            sout("hola");
+            .......
+            .......
+
+-----------------------------
+# La visibilidad de un metodo en la clase Hija no puede ser mayor que en la clase Padre
+1. Private
+2. Default
+3. Protected
+4. Public
+
+No se puede crear un metodo con el mismo nombre en la clase Hija como private si en el Padre esta como public. 
+La visibilidad de clase Hija debe ser igual a menor que la de la clase Padre.
+
+-------------
+## Polimorfismo:
+Permite que multiples instancias de clases hijas puedan ser referenciadas por su clase padre.
+
+En el main:
+Crear un computador normalmente:
+
+        Computador cc = new Computador();
+Pero un computador, tambien es un dispositivo(clase Padre)
+
+    Dispositivo dispositivo1 = new Computador();
+
+Pero esto es un ERROR, ya que no todos los computadores son dispositivos:
+
+    Computador cc = new Dispositivo();
+
+# Acceder a los métodos:
+lo normal:
+
+         Computador cc = new Computador();
+         cc.setVelocidad(2.5f); //float
+Usando polimorfismo:
+
+        Dispositivo dispositivo1 = new Computador()
+        dispositivo1.set... //Error
+        
+No se puede acceder porque la forma de la variable es de dispositivo, para poder acceder a la velocidad debo regresarlo a su forma original, que es un computador.
+
+# Casteo:
+    Dispositivo dispositivo1 = new Computador();
+    Computador compuCasteo = (Computador) dispositivo1;
+    dispositivo1.setVelodidad(2.5f)
+-------------------
+
+    Dispositivo dispositivo1 = new Computador();
+
+Si no se que tipo de dispositivo es (computador, teclado o mouse):
+
+    if(dispositivo1) instanceof (Computador){
+    Computador ccc = (Computador) dispositivo1;
+    ccc.setVelocidad(4.5);
+    }
+    
+    if(dispositivo1) instanceof (Teclado){
+    Teclado ttt = (Teclado) dispositivo1;
+    ttt.setInalambrico(true);
+    }
+--------------------
+# ¿Sera posibles guardar los diferentes dispositivos (computador, teclado o mouse)?
+
+ 
+
+
+
+    
+
+
+
+
+
+
 
 
 
