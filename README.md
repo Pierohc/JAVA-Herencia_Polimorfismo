@@ -194,6 +194,15 @@ Si no se que tipo de dispositivo es (computador, teclado o mouse):
     }
 --------------------
 # ¿Sera posibles guardar los diferentes dispositivos (computador, teclado o mouse)?
+![image](https://github.com/Pierohc/JAVA-Herencia_Polimorfismo/assets/133154904/2f74d452-eea2-45c3-a100-3a4cf0dffa16)
+
+![image](https://github.com/Pierohc/JAVA-Herencia_Polimorfismo/assets/133154904/a3148e1a-9e14-41b7-a52a-e996a4f3882c)
+
+Imprimir dispositivos ordenadamente usando Polimorfismo:
+
+![image](https://github.com/Pierohc/JAVA-Herencia_Polimorfismo/assets/133154904/e1d4fe55-c342-405b-9a4c-45e00d7dc1e0)
+
+
 
  
 
